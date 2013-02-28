@@ -5,20 +5,19 @@ import android.content.Intent;
 import android.os.Binder;
 import android.os.IBinder;
 import android.util.Log;
-import android.widget.Toast;
 
 public class TestBindService extends Service {
 	
 	static final String TAG= "BindService";
 	
 	public class BindServiceBinder extends Binder{
-		// ƒT[ƒrƒX‚Ìæ“¾
+		// ã‚µãƒ¼ãƒ“ã‚¹ã®å–å¾—
 		TestBindService getService(){
 			return TestBindService.this;
 		}
 	}
 	
-	// Binder‚Ìì¬
+	// Binderã®ä½œæˆ
 	private final IBinder mBinder = new BindServiceBinder();
 	
 	@Override
@@ -41,6 +40,6 @@ public class TestBindService extends Service {
 	}
 
 	public void TestFunction(){
-		Log.i(TAG, "“K“–‚Éì‚Á‚½ŠÖ”‚ªŒÄ‚Î‚ê‚Ü‚µ‚½iOƒÖOj");
+		Log.i(TAG, "é©å½“ã«ä½œã£ãŸé–¢æ•°ãŒå‘¼ã°ã‚Œã¾ã—ãŸï¼ˆï¼¾Ï‰ï¼¾ï¼‰");
 	}
 }
