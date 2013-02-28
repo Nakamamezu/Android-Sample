@@ -13,23 +13,20 @@ import android.view.ViewGroup;
 import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.LinearLayout;
-import android.widget.Toast;
-import android.os.Binder;
 import android.os.IBinder;
-import android.app.Service;
 
 public class MainActivity extends Activity {
 
 	private final int WC = ViewGroup.LayoutParams.WRAP_CONTENT; 
 
-	// ƒŒƒCƒAƒEƒg
+	// ãƒ¬ã‚¤ã‚¢ã‚¦ãƒˆ
 	LinearLayout ll;
 
     Button btnBind;
     Button btnUnBind;
     
     Button btnFunc;
-    // Service‚Ì•Û‘¶
+    // Serviceã®ä¿å­˜
     TestBindService mService;
     boolean         connectionStatus;
 
@@ -52,7 +49,7 @@ public class MainActivity extends Activity {
         
         btnBind.setText("Service Onbind");
         btnUnBind.setText("Service Unbind");
-        btnFunc.setText("Service “K“–‚ÈŠÖ”");
+        btnFunc.setText("Service é©å½“ãªé–¢æ•°");
         
         ll.addView( btnBind ,  WC );
         ll.addView( btnUnBind, WC );
@@ -61,18 +58,18 @@ public class MainActivity extends Activity {
 
 	}
 
-	// ƒRƒlƒNƒVƒ‡ƒ“ì¬
+	// ã‚³ãƒã‚¯ã‚·ãƒ§ãƒ³ä½œæˆ
 	private ServiceConnection connection = new ServiceConnection() {	
 		@Override
 		public void onServiceConnected(ComponentName className, IBinder service) {
-			// ƒT[ƒrƒXÚ‘±‚ÉŒÄ‚Î‚ê‚é
+			// ã‚µãƒ¼ãƒ“ã‚¹æ¥ç¶šæ™‚ã«å‘¼ã°ã‚Œã‚‹
 			Log.i("ServiceConnection", "onServiceConnected");
-			// ƒoƒCƒ“ƒ_[‚ğ•Û‘¶
+			// ãƒã‚¤ãƒ³ãƒ€ãƒ¼ã‚’ä¿å­˜
 			mService = ((TestBindService.BindServiceBinder)service).getService();
 		}
 		@Override
 		public void onServiceDisconnected(ComponentName arg0) {
-			// ƒT[ƒrƒXØ’f‚ÉŒÄ‚Î‚ê‚é
+			// ã‚µãƒ¼ãƒ“ã‚¹åˆ‡æ–­æ™‚ã«å‘¼ã°ã‚Œã‚‹
 			Log.i("ServiceConnection", "onServiceDisconnected");
 			mService = null;
 		}
@@ -83,7 +80,7 @@ public class MainActivity extends Activity {
 		@Override
 		public void onClick(View view) {
 			if( view == btnBind ){
-				// ƒoƒCƒ“ƒhŠJn
+				// ãƒã‚¤ãƒ³ãƒ‰é–‹å§‹
 				bindService( new Intent( MainActivity.this, TestBindService.class ) ,
 						     connection,
 						     Context.BIND_AUTO_CREATE 
@@ -91,13 +88,13 @@ public class MainActivity extends Activity {
 				connectionStatus = true;
 			}else if( view == btnUnBind ){
 				if( connectionStatus ){
-					// ƒoƒCƒ“ƒh‚³‚ê‚Ä‚¢‚éê‡AƒoƒCƒ“ƒh‚ğ‰ğœ
+					// ãƒã‚¤ãƒ³ãƒ‰ã•ã‚Œã¦ã„ã‚‹å ´åˆã€ãƒã‚¤ãƒ³ãƒ‰ã‚’è§£é™¤
 					unbindService( connection );
 					connectionStatus = false;
 				}
 			}else if( view == btnFunc ){
 				if( connectionStatus ){
-					// “K“–‚ÈŠÖ”‚ğŒÄ‚Ño‚µ
+					// é©å½“ãªé–¢æ•°ã‚’å‘¼ã³å‡ºã—
 					mService.TestFunction();
 				}
 			}
